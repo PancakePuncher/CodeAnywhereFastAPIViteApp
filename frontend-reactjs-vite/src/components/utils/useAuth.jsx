@@ -65,9 +65,9 @@ export function AuthProvider({ children }) {
                 setAuthed(false)})
   }
 
-  return <authContext.Provider value={{login}}>{children}</authContext.Provider>;
+  return <AuthContext.Provider value={{login}}>{children}</AuthContext.Provider>;
 }
 
-export default function AuthConsumer() {
+export function useAuth() {
   return React.useContext(AuthContext);
 }

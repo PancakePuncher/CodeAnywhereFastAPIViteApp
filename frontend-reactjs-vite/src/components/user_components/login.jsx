@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { AuthProvider, AuthContext } from "../utils/useAuth.jsx";
-import { useContext } from 'react';
+// We only need to import useAuth because useAuth is a function that calls React.useContext(AuthContext)
+import { useAuth } from "../utils/useAuth.jsx";
 
 const initialValues = {
     currentEmail: "",
@@ -8,10 +8,8 @@ const initialValues = {
 };
 
 export default function LoginComponent() {
-
     const [values, setValues] = useState(initialValues);
-    const authContext = useContext(AuthContext);
-    const { login } = AuthProvider();
+    const { login } = useAuth();
 
     const handleInputChange = (e) => {
         const {className, value} = e.target;
@@ -30,7 +28,7 @@ export default function LoginComponent() {
     loginFormData.append("password", values.currentPassword);
 
     login(loginFormData).then(() => {
-        navigate("/home");
+        navigate("/home", {replace: true});
       });
 
   }
