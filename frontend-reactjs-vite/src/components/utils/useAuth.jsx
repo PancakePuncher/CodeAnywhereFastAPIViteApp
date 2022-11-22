@@ -65,7 +65,7 @@ export function AuthProvider({ children }) {
                 setAuthed(false)})
   }
 
-  return <AuthContext.Provider value={{login}}>{children}</authContext.Provider>;
+  return <AuthContext.Provider value={{login}}>{children}</AuthContext.Provider>;
 }
 
 export function useAuth() {
