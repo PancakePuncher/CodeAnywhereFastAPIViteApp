@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 // We only need to import useAuth because useAuth is a function that calls React.useContext(AuthContext)
 import { useAuth } from "../utils/useAuth.jsx";
 
@@ -8,6 +9,7 @@ const initialValues = {
 };
 
 export default function LoginComponent() {
+    const navigate = useNavigate();
     const [values, setValues] = useState(initialValues);
     const { login } = useAuth();
 

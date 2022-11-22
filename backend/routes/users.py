@@ -43,10 +43,12 @@ async def login_user(response: Response, data: UserLoginIn = Depends(UserLoginIn
         response.status_code = status.HTTP_202_ACCEPTED
         response.set_cookie(key="token", 
                             value=token, 
-                            samesite="none",
+                            samesite="None",
                             httponly=True,
                             secure=True,
-                            expires=604800
+                            expires=604800,
+                            # domain="port-5173-reactfastapiapp-pancakepuncher802511.codeanyapp.com",
+                            # path="/"
                             )
     else:
         response.status_code = status.HTTP_400_BAD_REQUEST

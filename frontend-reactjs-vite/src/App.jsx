@@ -10,15 +10,16 @@ export default function App() {
         <>
             <AuthProvider>
                 <Routes>
-                    <Route path="/login" element={<LoginComponent />} />
-                        <Route 
-                        path="home" 
-                        element={
-                        <RequireAuth>
-                            <Home />
-                        </RequireAuth>
-                        }
-                        />
+                <Route index element={<RequireAuth />} />
+                <Route path="login" element={<LoginComponent />} />
+                    <Route 
+                    path="home" 
+                    element={
+                    <RequireAuth>
+                        <Home />
+                    </RequireAuth>
+                    }
+                    />
                 </Routes>
             </AuthProvider>
         </>
