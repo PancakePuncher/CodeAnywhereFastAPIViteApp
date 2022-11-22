@@ -10,7 +10,7 @@ export default function RequireAuth({ children }) {
 
     if (authed == null) {
         checkAuth()
-        if (!authed) {
+        if (!authed && authed != null) {
             return <Navigate to="/login" state={{path: location.pathname}}/>
         } else {
             return children;

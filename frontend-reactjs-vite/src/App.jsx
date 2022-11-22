@@ -10,7 +10,7 @@ export default function App() {
         <>
             <AuthProvider>
                 <Routes>
-                <Route index element={<RequireAuth />} />
+                <Route index element={<LoginComponent />} />
                 <Route path="login" element={<LoginComponent />} />
                     <Route 
                     path="home" 
