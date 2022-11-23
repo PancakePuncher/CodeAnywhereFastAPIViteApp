@@ -1,19 +1,13 @@
-import { useLocation, Navigate } from 'react-router-dom'
-import { useRecoilValue } from 'recoil';
-import { useAuth } from "./useAuth.jsx"
-import { authState } from "../atoms/atoms.jsx";
+import { useLocation, Navigate } from 'react-router-dom';
+import { useAuth } from "./useAuth.jsx";
 
 export default function RequireAuth({ children }) {
-    const { checkAuth } = useAuth()
+    const { authed } = useAuth();
     const location = useLocation();
-    const authed = useRecoilValue(authState)
 
-    if (authed == null) {
-        checkAuth()
-        if (!authed && authed != null) {
-            return <Navigate to="/login" state={{path: location.pathname}}/>
-        } else {
-            return children;
-        }
+    if (!authed) {
+        return <Navigate to="/login" state={{path: location.pathname}} />
     }
+
+    return children;
   }

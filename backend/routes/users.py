@@ -32,11 +32,14 @@ router = APIRouter(
 
 @router.post("/login")
 async def login_user(response: Response, data: UserLoginIn = Depends(UserLoginIn.as_form), db: Session = Depends(get_db)):
-    try:
-        stored_data = await get_user_from_db(db, data)
-    except Exception:
-        response.status_code = status.HTTP_404_NOT_FOUND
+    stored_data = await get_user_from_db(db, data)
+    
+    if stored_data == None:
+        response.status_code = status.HTTP_400_BAD_REQUEST
+        return response
+        
     valid = await password_validator(stored_data, data)
+
     if valid == True:
         await db_update_login_time(db, stored_data)
         token = await token_creator(stored_data)
@@ -93,4 +96,5 @@ async def auth(response: Response, cookie: str = Header("cookie"), db: Session =
         return JSONResponse(content=data, status_code=status.HTTP_202_ACCEPTED)
     elif token_auth_check == False:
         response.status_code = status.HTTP_401_UNAUTHORIZED
-        return response
+    
+    return response

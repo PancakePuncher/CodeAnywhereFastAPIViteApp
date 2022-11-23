@@ -1,36 +1,41 @@
-import * as React from "react";
+import { useState, useEffect, useContext, createContext } from "react";
 import axios from "axios";
-import { authState } from "../atoms/atoms.jsx";
-import { useRecoilState } from 'recoil';
 
-export const AuthContext = React.createContext(null);
+export const AuthContext = createContext(null);
 
 export default function AuthProvider({ children }) {
+    const [authed, setAuthed] = useState(false);
 
-    const [authed, setAuthed] = useRecoilState(authState);
+    useEffect(() => {
+        checkAuth().then(response => setAuthed(response));
+    }, []);
 
-  function login(loginFormData) {
-    axios.post("https://port-8000-reactfastapiapp-pancakepuncher802511.codeanyapp.com/user/login", loginFormData, {
-        headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        withCredentials: true
+    async function login(loginFormData) {
+        await axios.post("https://port-8000-reactfastapiapp-pancakepuncher802511.codeanyapp.com/user/login", loginFormData, {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            withCredentials: true
         })
-        .then((response) => setAuthed(true))
-            .catch((error) => setAuthed(false))
-  }
+            .then((response) => {setAuthed(true)})
+            .catch((error) => {setAuthed(false)});
+    }
 
-  function checkAuth() {
-    axios.get("https://port-8000-reactfastapiapp-pancakepuncher802511.codeanyapp.com/user/auth", {
-        withCredentials: true
+    function checkAuth() {
+        return axios.get("https://port-8000-reactfastapiapp-pancakepuncher802511.codeanyapp.com/user/auth", {
+            withCredentials: true
         })
-        .then((response) => {setAuthed(true), console.log(response.data)})
-            .catch((error) => {setAuthed(false), console.log(error.response)})
-  }
-  console.log(authed)
-  return <AuthContext.Provider value={{login, checkAuth}}>{children}</AuthContext.Provider>;
+            .then((response) => {
+                return true;
+            })
+            .catch((error) => {
+                return false;
+            });
+    }
+
+    return <AuthContext.Provider value={{authed, login}}>{children}</AuthContext.Provider>;
 }
 
 export function useAuth() {
-    return React.useContext(AuthContext);
+    return useContext(AuthContext);
 }
