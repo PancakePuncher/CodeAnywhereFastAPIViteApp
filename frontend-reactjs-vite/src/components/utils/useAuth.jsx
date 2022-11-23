@@ -4,7 +4,7 @@ import axios from "axios";
 export const AuthContext = createContext(null);
 
 export default function AuthProvider({ children }) {
-    const [authed, setAuthed] = useState(false);
+    const [authed, setAuthed] = useState(null);
 
     useEffect(() => {
         checkAuth().then(response => setAuthed(response));
@@ -33,7 +33,20 @@ export default function AuthProvider({ children }) {
             });
     }
 
-    return <AuthContext.Provider value={{authed, login}}>{children}</AuthContext.Provider>;
+    function logout() {
+        return axios.get("https://port-8000-reactfastapiapp-pancakepuncher802511.codeanyapp.com/user/logout", {
+            withCredentials: true
+        })
+            .then((response) => {
+                setauthed(false)
+                return true;
+            })
+            .catch((error) => {
+                return false;
+            });
+    }
+
+    return <AuthContext.Provider value={{authed, login, logout}}>{children}</AuthContext.Provider>;
 }
 
 export function useAuth() {
