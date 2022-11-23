@@ -17,8 +17,12 @@ export default function AuthProvider({ children }) {
             },
             withCredentials: true
         })
-            .then((response) => {setAuthed(true)})
-            .catch((error) => {setAuthed(false)});
+            .then((response) => {
+                setAuthed(true)
+            })
+            .catch((error) => {
+                setAuthed(false)
+            });
     }
 
     function checkAuth() {
