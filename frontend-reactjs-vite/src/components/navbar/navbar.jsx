@@ -1,5 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import { useAuth } from "../utils/useAuth";
+import LoginPopUp from "../user_components/popupLogin.jsx";
+import CreatePopUp from "../user_components/popupCreate.jsx";
 import "./navbar.css";
 
 export default function Nav() {
@@ -17,6 +19,9 @@ export default function Nav() {
             </h1>
             <ul>
                 <li>
+                    <LoginPopUp />
+                </li>
+                <li>
                     <NavLink
                         className = "Nav-Link"
                         to="/home"
@@ -29,38 +34,34 @@ export default function Nav() {
                 </li>
                 {authed ? null
                 : <li>
-                    <NavLink
-                        className = "Nav-Link"
-                        to="/create"
-                        style={({ isActive }) =>
-                        isActive ? activeStyle : undefined
-                        }
-                    >
-                    Create Account
-                    </NavLink>
+                   <CreatePopUp className="popup">
+                        <Link
+                            className = "Nav-Link"
+                            to="/unauthed"
+                        >
+                        Create Account
+                        </Link>
+                    </CreatePopUp>
                 </li>
                 }
                 <li>
                 {authed
-                    ? <NavLink
+                    ? <Link
                         className = "Nav-Link"                    
-                        to="/login"
-                        onClick={ logout() }
-                        style={({ isActive }) =>
-                        isActive ? activeStyle : undefined
-                        }
+                        to="/unauthed"
+                        onClick={() => logout() }
                     >
                     Logout
-                    </NavLink>
-                    : <NavLink
-                        className = "Nav-Link"
-                        to="/login"
-                        style={({ isActive }) =>
-                        isActive ? activeStyle : undefined
-                        }
-                    >
-                    Login
-                    </NavLink>
+                    </Link>
+                    : 
+                    <LoginPopUp className="popup">
+                        <Link
+                            className = "Nav-Link"
+                            // to="/home"
+                        >
+                        Login
+                        </Link>
+                    </LoginPopUp>
                 }           
                 </li>
             </ul>

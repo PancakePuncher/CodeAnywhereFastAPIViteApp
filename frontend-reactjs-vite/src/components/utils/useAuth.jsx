@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext, createContext } from "react";
 import axios from "axios";
+import { Navigate, redirect } from "react-router-dom";
 
 export const AuthContext = createContext(null);
 
@@ -42,7 +43,7 @@ export default function AuthProvider({ children }) {
             withCredentials: true
         })
             .then((response) => {
-                setauthed(false)
+                setAuthed(false)
                 return true;
             })
             .catch((error) => {

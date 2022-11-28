@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Popup from 'reactjs-popup';
 
 const submitValidators = {
     isEmailValid: false,
@@ -8,7 +9,7 @@ const submitValidators = {
     isPasswordMatching: false,
 };
 
-export default function CreateUserComponent() {
+export default function CreatePopUp(props) {
 
     const [actionResponse, setActionResponse] = useState("");
 
@@ -148,56 +149,58 @@ export default function CreateUserComponent() {
     };
 
     return (
-        <div>
-        <form onSubmit={sendCreateCredentials} autoComplete="off">
-          <fieldset>
+        <Popup trigger={props.children} closeOnDocumentClick position="bottom right">
             <div>
-                <label htmlFor="createEmail">Email: </label>
-                <input type="text" 
-                name="email"
-                id="createEmail" 
-                className="createEmail" 
-                value={createEmail} 
-                onChange={event => emailChangeValid(event, event.target.value)}></input>
-                <h4>{validEmail}</h4>
-            </div>
-            <div>
-                <label htmlFor="createUsername">Username: </label>
-                <input type="text"
-                autoComplete="new-username"
-                id="createUsername" 
-                className="createUsername" 
-                value={createUsername} 
-                onChange={event => usernameChangeValid(event, event.target.value)}>
-                </input>
-                <h4>{validUsername}</h4>
-            </div>
-            <div>
-                <label htmlFor="createPassword1">Password: </label>
-                <input type="password"
-                autoComplete="new-password"
-                id="createPassword1" 
-                className="createPassword1" 
-                value={createPassword1} 
-                onChange={event => password1ChangeValid(event, event.target.value)}>
-                </input>
-                <h4>{validPasswordStrength}</h4>
-            </div>
-            <div>
-                <label htmlFor="createPassword2">Verify Password: </label>
-                <input type="password"
-                autoComplete="new-password"
-                id="createPassword2" 
-                className="createPassword2" 
-                value={createPassword2} 
-                onChange={event => password2ChangeValid(event, event.target.value)}>
-                </input>
-                <h4>{validPasswords}</h4>
-            </div>
-            <button disabled={createButtonStatus} type="submit" value="Create User">Create User</button>
-            </fieldset>
-            <h1>{actionResponse}</h1>
-        </form>
-      </div>
+            <form onSubmit={sendCreateCredentials} autoComplete="off">
+            <fieldset>
+                <div>
+                    <label htmlFor="createEmail">Email: </label>
+                    <input type="text" 
+                    name="email"
+                    id="createEmail" 
+                    className="createEmail" 
+                    value={createEmail} 
+                    onChange={event => emailChangeValid(event, event.target.value)}></input>
+                    <h4>{validEmail}</h4>
+                </div>
+                <div>
+                    <label htmlFor="createUsername">Username: </label>
+                    <input type="text"
+                    autoComplete="new-username"
+                    id="createUsername" 
+                    className="createUsername" 
+                    value={createUsername} 
+                    onChange={event => usernameChangeValid(event, event.target.value)}>
+                    </input>
+                    <h4>{validUsername}</h4>
+                </div>
+                <div>
+                    <label htmlFor="createPassword1">Password: </label>
+                    <input type="password"
+                    autoComplete="new-password"
+                    id="createPassword1" 
+                    className="createPassword1" 
+                    value={createPassword1} 
+                    onChange={event => password1ChangeValid(event, event.target.value)}>
+                    </input>
+                    <h4>{validPasswordStrength}</h4>
+                </div>
+                <div>
+                    <label htmlFor="createPassword2">Verify Password: </label>
+                    <input type="password"
+                    autoComplete="new-password"
+                    id="createPassword2" 
+                    className="createPassword2" 
+                    value={createPassword2} 
+                    onChange={event => password2ChangeValid(event, event.target.value)}>
+                    </input>
+                    <h4>{validPasswords}</h4>
+                </div>
+                <button disabled={createButtonStatus} type="submit" value="Create User">Create User</button>
+                </fieldset>
+                <h1>{actionResponse}</h1>
+            </form>
+        </div>
+      </Popup>
     )
 }

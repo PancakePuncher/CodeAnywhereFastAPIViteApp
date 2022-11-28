@@ -6,7 +6,7 @@ export default function RequireAuth({ children }) {
     const location = useLocation();
 
     if (!authed) {
-        return <Navigate to="/login" state={{path: location.pathname}} />
+        return <Navigate to="/unauthed" state={{path: location.pathname}} />
     }
 
     return children;

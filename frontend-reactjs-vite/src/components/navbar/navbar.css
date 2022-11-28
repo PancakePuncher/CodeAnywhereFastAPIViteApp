@@ -34,3 +34,8 @@
 .Nav-Link:hover {
     background-color: #777777;
 }
+
+.popup-content {
+    color: white;
+    background-color: #333333;
+}
