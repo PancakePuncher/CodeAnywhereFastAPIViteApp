@@ -8,7 +8,9 @@ export default function AuthProvider({ children }) {
     const [authed, setAuthed] = useState(null);
 
     useEffect(() => {
-        checkAuth().then(response => setAuthed(response));
+        if (authed == null) {
+            checkAuth().then(response => setAuthed(response));
+        };
     }, []);
 
     async function login(loginFormData) {
