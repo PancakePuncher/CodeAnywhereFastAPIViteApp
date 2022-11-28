@@ -154,6 +154,7 @@ export default function CreateUserComponent() {
             <div>
                 <label htmlFor="createEmail">Email: </label>
                 <input type="text" 
+                name="email"
                 id="createEmail" 
                 className="createEmail" 
                 value={createEmail} 
@@ -162,7 +163,8 @@ export default function CreateUserComponent() {
             </div>
             <div>
                 <label htmlFor="createUsername">Username: </label>
-                <input type="text" 
+                <input type="text"
+                autoComplete="new-username"
                 id="createUsername" 
                 className="createUsername" 
                 value={createUsername} 
@@ -172,7 +174,8 @@ export default function CreateUserComponent() {
             </div>
             <div>
                 <label htmlFor="createPassword1">Password: </label>
-                <input type="password" 
+                <input type="password"
+                autoComplete="new-password"
                 id="createPassword1" 
                 className="createPassword1" 
                 value={createPassword1} 
@@ -182,7 +185,8 @@ export default function CreateUserComponent() {
             </div>
             <div>
                 <label htmlFor="createPassword2">Verify Password: </label>
-                <input type="password" 
+                <input type="password"
+                autoComplete="new-password"
                 id="createPassword2" 
                 className="createPassword2" 
                 value={createPassword2} 

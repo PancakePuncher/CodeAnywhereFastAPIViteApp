@@ -1,25 +1,67 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useAuth } from "../utils/useAuth";
+import "./navbar.css";
 
 export default function Nav() {
+
+    let activeStyle = {
+        backgroundColor: "#555555",
+    }
 
     const { authed, logout } = useAuth()
 
     return (
-        <nav>
+        <nav className="nav">
+            <h1 className="site-title">
+                PancakePuncher's Apps
+            </h1>
             <ul>
                 <li>
-                    <Link to="/home">Home</Link>
+                    <NavLink
+                        className = "Nav-Link"
+                        to="/home"
+                        style={({ isActive }) =>
+                        isActive ? activeStyle : undefined
+                        }
+                    >
+                    Home
+                    </NavLink>
                 </li>
-                <li>
-                    <Link to="/create">Create New User</Link>
+                {authed ? null
+                : <li>
+                    <NavLink
+                        className = "Nav-Link"
+                        to="/create"
+                        style={({ isActive }) =>
+                        isActive ? activeStyle : undefined
+                        }
+                    >
+                    Create Account
+                    </NavLink>
                 </li>
+                }
                 <li>
                 {authed
-                ? <Link to="/login" onClick={ logout() }>Logout</Link>
-                : <Link to="/login">Login</Link>
-                }
+                    ? <NavLink
+                        className = "Nav-Link"                    
+                        to="/login"
+                        onClick={ logout() }
+                        style={({ isActive }) =>
+                        isActive ? activeStyle : undefined
+                        }
+                    >
+                    Logout
+                    </NavLink>
+                    : <NavLink
+                        className = "Nav-Link"
+                        to="/login"
+                        style={({ isActive }) =>
+                        isActive ? activeStyle : undefined
+                        }
+                    >
+                    Login
+                    </NavLink>
+                }           
                 </li>
             </ul>
         </nav>

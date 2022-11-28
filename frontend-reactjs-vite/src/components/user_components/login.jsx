@@ -41,11 +41,11 @@ export default function LoginComponent() {
                 <fieldset>
                     <div>
                         <label htmlFor="currentEmail">Email: </label>
-                        <input type="text" id="currentEmail" className="currentEmail" value={values.currentEmail} onChange={handleInputChange}></input>
+                        <input type="text" autoComplete="current-email" id="currentEmail" className="currentEmail" value={values.currentEmail} onChange={handleInputChange}></input>
                     </div>
                     <div>
                         <label htmlFor="currentPassword">Password: </label>
-                        <input type="password" id="currentPassword" className="currentPassword" value={values.currentPassword} onChange={handleInputChange}></input>
+                        <input type="password" autoComplete="current-password" id="currentPassword" className="currentPassword" value={values.currentPassword} onChange={handleInputChange}></input>
                     </div>
                     <button type="button" onClick={sendLoginCredentials}>Sign In</button>
                 </fieldset>

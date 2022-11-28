@@ -61,7 +61,7 @@ async def logout_user(response: Response):
     response.delete_cookie("token")
     return response
 
-@router.post("/create", description="This route is used to create a new user.")
+@router.post("/create")
 async def create_user(data: UserCreateIn = Depends(UserCreateIn.as_form), db: Session = Depends(get_db)):
     if data.username == "string" or data.password == "string" or data.email == "user@example.com":
         response.status_code = status.HTTP_400_BAD_REQUEST
@@ -76,7 +76,7 @@ async def create_user(data: UserCreateIn = Depends(UserCreateIn.as_form), db: Se
         response.status_code = status.HTTP_400_BAD_REQUEST
     return response
 
-@router.post("/user_search", description="This route is used to search for a user. At this time this route is only used to validate OAuth2 is functioning.")
+@router.post("/user_search")
 async def search_for_user(Username: str = "", Email: str = "", Suffix: int = 0, SearchType: bool = True, db: Session = Depends(get_db),  token: str = Depends(oauth2_scheme)):
     token_auth_check, token_info = await verify_token(token)
     if token_auth_check == True:
