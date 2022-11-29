@@ -1,17 +1,10 @@
 import { useState, useEffect, useContext, createContext } from "react";
 import axios from "axios";
-import { Navigate, redirect } from "react-router-dom";
 
 export const AuthContext = createContext(null);
 
 export default function AuthProvider({ children }) {
     const [authed, setAuthed] = useState(null);
-
-    useEffect(() => {
-        if (authed == null) {
-            checkAuth().then(response => setAuthed(response));
-        };
-    }, []);
 
     async function login(loginFormData) {
         await axios.post("https://port-8000-reactfastapiapp-pancakepuncher802511.codeanyapp.com/user/login", loginFormData, {
@@ -53,7 +46,7 @@ export default function AuthProvider({ children }) {
             });
     }
 
-    return <AuthContext.Provider value={{authed, login, logout}}>{children}</AuthContext.Provider>;
+    return <AuthContext.Provider value={{authed, login, logout, checkAuth, setAuthed}}>{children}</AuthContext.Provider>;
 }
 
 export function useAuth() {

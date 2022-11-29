@@ -1,0 +1,33 @@
+.submit-form label {
+    color: white;
+    display: inline-block;
+    position: relative;
+}
+
+.submit-form label {
+    display: block;
+    font-size: 1.15rem;
+  }
+
+  .submit-form .input-field {
+    margin: 0.35rem;
+}
+
+
+.submit-form .input-field input {
+    border-radius: 0.25rem;
+    padding: 0.15rem
+}
+
+.submit-form .password-field {
+    display: flex;
+}
+
+.submit-form .password-field input {
+    border-radius: 0.25rem 0 0 0.25rem;
+}
+
+.submit-form .password-field .password-toggle {
+    background-color: white;
+    border-radius: 0 0.25rem 0.25rem 0;
+}
