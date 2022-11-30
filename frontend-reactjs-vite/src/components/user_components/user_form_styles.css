@@ -1,5 +1,11 @@
+.form-title {
+    color: #ADADAD;
+    font-weight: bold;
+}
+
 .submit-form label {
-    color: white;
+    color: #ADADAD;
+    font-weight: bold;
     display: inline-block;
     position: relative;
 }
@@ -13,11 +19,31 @@
     margin: 0.35rem;
 }
 
+.submit-form .input-field:focus {
+    background-color: purple;
+}
+
 
 .submit-form .input-field input {
     border-radius: 0.25rem;
-    padding: 0.15rem
+    padding: 0.15rem;
+    width: 13rem;
+    font-weight: bold;
+    background-color: #424242;
+    color: #ADADAD;
+    border-bottom: 0.10rem #ADADAD solid;
 }
+
+.submit-form .input-field input:focus {
+    outline: none;
+    background-color: #5A5A5A;
+}
+
+.submit-form .input-field input:focus::placeholder {
+    color: #3B3B3B;
+    font-weight: bold;
+}
+
 
 .submit-form .password-field {
     display: flex;
@@ -25,9 +51,13 @@
 
 .submit-form .password-field input {
     border-radius: 0.25rem 0 0 0.25rem;
+    width: 11rem;
 }
 
 .submit-form .password-field .password-toggle {
     background-color: white;
     border-radius: 0 0.25rem 0.25rem 0;
+    background-color: #424242;
+    color: #ADADAD;
+    border-bottom: 0.10rem #ADADAD solid;
 }

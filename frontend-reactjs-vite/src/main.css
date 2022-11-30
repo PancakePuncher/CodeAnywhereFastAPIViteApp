@@ -2,7 +2,8 @@
     { 
     margin: 0; 
     padding: 0; 
-    border: 0; 
+    border: 0;
+    font-family: 'Roboto', sans-serif;
 }
 
 body {
@@ -56,6 +57,6 @@ body {
 
 .button-default:disabled {
     box-shadow: #D6D6E7 0 3px 7px inset;
-    opacity: 50%;
+    opacity: 30%;
     transform: translateY(2px);
   }

@@ -65,23 +65,31 @@ export default function LoginPopUp(props) {
     return (
         <Popup trigger={props.children} closeOnDocumentClick position="bottom right">
             <div>
-                <h2>Login</h2>
+                <h2 className="form-title">Login</h2>
                 <form className="submit-form" autoComplete="off">
                     <fieldset>
                         <div className="input-field">
                             <label htmlFor="currentEmail">Email</label>
-                            <input type="text" autoComplete="off" id="currentEmail" className="currentEmail" value={values.currentEmail} onChange={handleInputChange}></input>
+                            <input type="text" 
+                                autoComplete="off" 
+                                id="currentEmail" 
+                                className="currentEmail" 
+                                value={values.currentEmail} 
+                                onChange={handleInputChange}
+                                placeholder="Enter Email..."
+                                >
+                            </input>
                         </div>
                         <div className="input-field">
                             <label htmlFor="currentPassword">Password</label>
                             <div className="password-field">
-                                <input
-                                    type={passwordShown ? "text" : "password"}
-                                    autoComplete="current-password" 
-                                    id="currentPassword" 
-                                    className="currentPassword" 
-                                    value={values.currentPassword} 
-                                    onChange={handleInputChange} 
+                                <input type={passwordShown ? "text" : "password"}
+                                        autoComplete="current-password" 
+                                        id="currentPassword" 
+                                        className="currentPassword" 
+                                        value={values.currentPassword} 
+                                        onChange={handleInputChange} 
+                                        placeholder="Enter Password..."
                                     >
                                 </input>
                                 <button type="button" className="password-toggle" onClick={togglePassword}>Show</button>

@@ -12,6 +12,7 @@ const submitValidators = {
 
 export default function CreatePopUp(props) {
 
+
     const [validEmail, setValidEmail] = useState("");
     const [createEmail, setCreateEmail] = useState("");
     const emailChangeValid = (e, v) => {
@@ -146,53 +147,77 @@ export default function CreatePopUp(props) {
                     setActionResponse(error.response.status)});
     };
 
+    const [passwordNewShown, setNewPasswordShown] = useState(false);
+    const toggleNewPassword = () => {
+        setNewPasswordShown(!passwordNewShown);
+    };
+
+    const [passwordVerifyShown, setVerifyPasswordShown] = useState(false);
+    const toggleVerifyPassword = () => {
+        setVerifyPasswordShown(!passwordVerifyShown);
+    };
     return (
         <Popup trigger={props.children} closeOnDocumentClick position="bottom right">
             <div>
-                <h2>Create New User</h2>
+                <h2 className="form-title">Create New User</h2>
                 <form className="submit-form" onSubmit={sendCreateCredentials} autoComplete="off">
                     <fieldset>
                         <div className="input-field">
-                            <label htmlFor="createEmail">Email</label>
+                            <label htmlFor="createEmail">Email<sup>*</sup></label>
                             <input type="text" 
-                            name="email"
-                            id="createEmail" 
-                            className="createEmail" 
-                            value={createEmail} 
-                            onChange={event => emailChangeValid(event, event.target.value)}></input>
+                                name="email"
+                                id="createEmail" 
+                                className="createEmail" 
+                                value={createEmail} 
+                                onChange={event => emailChangeValid(event, event.target.value)}
+                                placeholder="Enter Email..."
+                                >
+                            </input>
                             <h4>{validEmail}</h4>
                         </div>
                         <div className="input-field">
-                            <label htmlFor="createUsername">Username</label>
+                            <label htmlFor="createUsername">Username<sup>*</sup></label>
                             <input type="text"
-                            autoComplete="new-username"
-                            id="createUsername" 
-                            className="createUsername" 
-                            value={createUsername} 
-                            onChange={event => usernameChangeValid(event, event.target.value)}>
+                                autoComplete="new-username"
+                                id="createUsername" 
+                                className="createUsername" 
+                                value={createUsername} 
+                                onChange={event => usernameChangeValid(event, event.target.value)}
+                                placeholder="Enter Username..."
+                                >
                             </input>
                             <h4>{validUsername}</h4>
                         </div>
                         <div className="input-field">
-                            <label htmlFor="createPassword1">Password</label>
-                            <input type="password"
-                            autoComplete="new-password"
-                            id="createPassword1" 
-                            className="createPassword1" 
-                            value={createPassword1} 
-                            onChange={event => password1ChangeValid(event, event.target.value)}>
-                            </input>
+                            <label htmlFor="createPassword1">Password<sup>*</sup></label>
+                            <div className="password-field">
+                                <input type={passwordNewShown ? "text" : "password"}
+                                    autoComplete="new-password"
+                                    id="createPassword1" 
+                                    className="createPassword1" 
+                                    value={createPassword1} 
+                                    onChange={event => password1ChangeValid(event, event.target.value)}
+                                    placeholder="Enter Password..."
+                                    >
+                                </input>
+                                <button type="button" className="password-toggle" onClick={toggleNewPassword}>Show</button>
+                            </div>
                             <h4>{validPasswordStrength}</h4>
                         </div>
                         <div className="input-field">
-                            <label htmlFor="createPassword2">Verify Password</label>
-                            <input type="password"
-                            autoComplete="new-password"
-                            id="createPassword2" 
-                            className="createPassword2" 
-                            value={createPassword2} 
-                            onChange={event => password2ChangeValid(event, event.target.value)}>
-                            </input>
+                            <label htmlFor="createPassword2">Verify Password<sup>*</sup></label>
+                            <div className="password-field">
+                                <input type={passwordVerifyShown ? "text" : "password"}
+                                    autoComplete="new-password"
+                                    id="createPassword2" 
+                                    className="createPassword2" 
+                                    value={createPassword2} 
+                                    onChange={event => password2ChangeValid(event, event.target.value)}
+                                    placeholder="Verify Password..."
+                                    >
+                                </input>
+                                <button type="button" className="password-toggle" onClick={toggleVerifyPassword}>Show</button>
+                            </div>
                             <h4>{validPasswords}</h4>
                         </div>
                         <button disabled={createButtonStatus} type="submit" value="Create User" className="button-default">Create User</button>

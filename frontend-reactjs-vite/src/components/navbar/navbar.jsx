@@ -15,7 +15,7 @@ export default function Nav() {
     return (
         <nav className="nav">
             <h1 className="site-title">
-                PancakePuncher's Apps
+                
             </h1>
             <ul>
                 <li>

@@ -9,6 +9,9 @@ export default function App() {
 
     return (
         <>
+            <style>
+                @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+            </style>
             <AuthProvider>
                 <Nav />
                 <Routes>
