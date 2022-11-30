@@ -14,10 +14,9 @@ const submitValidators = {
 }
 
 export default function LoginPopUp(props) {
-    const [ values, setValues ] = useState(initialValues);
-    const [passwordShown, setPasswordShown] = useState(false);
     const { login } = useAuth();
 
+    const [ values, setValues ] = useState(initialValues);
     const handleInputChange = (e) => {
         const {className, value} = e.target;
         setValues(
@@ -57,10 +56,14 @@ export default function LoginPopUp(props) {
         setLoginButtonStatus(!areTrue)
     };
 
-
+    const [ passwordShown, setPasswordShown ] = useState(false);
     const togglePassword = () => {
         setPasswordShown(!passwordShown);
     };
+
+    const [ hideShowToggleStyle, setHideShowToggleStyle] = useState(false)
+    const onFocus = () => setHideShowToggleStyle(true)
+    const onBlur = () => setHideShowToggleStyle(false)
 
     return (
         <Popup trigger={props.children} closeOnDocumentClick position="bottom right">
@@ -76,9 +79,7 @@ export default function LoginPopUp(props) {
                                 className="currentEmail" 
                                 value={values.currentEmail} 
                                 onChange={handleInputChange}
-                                placeholder="Enter Email..."
-                                >
-                            </input>
+                                placeholder="Enter Email..."/>
                         </div>
                         <div className="input-field">
                             <label htmlFor="currentPassword">Password</label>
@@ -90,9 +91,9 @@ export default function LoginPopUp(props) {
                                         value={values.currentPassword} 
                                         onChange={handleInputChange} 
                                         placeholder="Enter Password..."
-                                    >
-                                </input>
-                                <button type="button" className="password-toggle" onClick={togglePassword}>Show</button>
+                                        onFocus={onFocus}
+                                        onBlur={onBlur}/>
+                                <button type="button" className={hideShowToggleStyle ? "password-toggle-focus" : "password-toggle"} onClick={togglePassword}>Show</button>
                             </div>
                         </div>
                         <button disabled={loginButtonStatus} type="button" onClick={sendLoginCredentials} className="button-default">Sign In</button>

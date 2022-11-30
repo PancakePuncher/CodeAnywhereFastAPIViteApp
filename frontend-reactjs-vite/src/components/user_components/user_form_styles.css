@@ -55,9 +55,15 @@
 }
 
 .submit-form .password-field .password-toggle {
-    background-color: white;
     border-radius: 0 0.25rem 0.25rem 0;
     background-color: #424242;
+    color: #ADADAD;
+    border-bottom: 0.10rem #ADADAD solid;
+}
+
+.submit-form .password-field .password-toggle-focus {
+    border-radius: 0 0.25rem 0.25rem 0;
+    background-color: #5A5A5A;
     color: #ADADAD;
     border-bottom: 0.10rem #ADADAD solid;
 }

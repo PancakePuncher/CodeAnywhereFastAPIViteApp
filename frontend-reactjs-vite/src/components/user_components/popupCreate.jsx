@@ -156,6 +156,14 @@ export default function CreatePopUp(props) {
     const toggleVerifyPassword = () => {
         setVerifyPasswordShown(!passwordVerifyShown);
     };
+
+    const [ hideShowToggleNewStyle, setHideShowToggleNewStyle] = useState(false)
+    const [ hideShowToggleVerifyStyle, setHideShowToggleVerifyStyle] = useState(false)
+    const onFocusNew = () => setHideShowToggleNewStyle(true)
+    const onBlurNew = () => setHideShowToggleNewStyle(false)
+    const onFocusVerify = () => setHideShowToggleVerifyStyle(true)
+    const onBlurVerify = () => setHideShowToggleVerifyStyle(false)
+
     return (
         <Popup trigger={props.children} closeOnDocumentClick position="bottom right">
             <div>
@@ -171,8 +179,7 @@ export default function CreatePopUp(props) {
                                 value={createEmail} 
                                 onChange={event => emailChangeValid(event, event.target.value)}
                                 placeholder="Enter Email..."
-                                >
-                            </input>
+                                />
                             <h4>{validEmail}</h4>
                         </div>
                         <div className="input-field">
@@ -184,8 +191,7 @@ export default function CreatePopUp(props) {
                                 value={createUsername} 
                                 onChange={event => usernameChangeValid(event, event.target.value)}
                                 placeholder="Enter Username..."
-                                >
-                            </input>
+                                />
                             <h4>{validUsername}</h4>
                         </div>
                         <div className="input-field">
@@ -198,9 +204,9 @@ export default function CreatePopUp(props) {
                                     value={createPassword1} 
                                     onChange={event => password1ChangeValid(event, event.target.value)}
                                     placeholder="Enter Password..."
-                                    >
-                                </input>
-                                <button type="button" className="password-toggle" onClick={toggleNewPassword}>Show</button>
+                                    onFocus={onFocusNew}
+                                    onBlur={onBlurNew}/>
+                                <button type="button" className={hideShowToggleNewStyle ? "password-toggle-focus" : "password-toggle"} onClick={toggleNewPassword}>Show</button>
                             </div>
                             <h4>{validPasswordStrength}</h4>
                         </div>
@@ -214,9 +220,9 @@ export default function CreatePopUp(props) {
                                     value={createPassword2} 
                                     onChange={event => password2ChangeValid(event, event.target.value)}
                                     placeholder="Verify Password..."
-                                    >
-                                </input>
-                                <button type="button" className="password-toggle" onClick={toggleVerifyPassword}>Show</button>
+                                    onFocus={onFocusVerify}
+                                    onBlur={onBlurVerify}/>
+                                <button type="button" className={hideShowToggleVerifyStyle ? "password-toggle-focus" : "password-toggle"} onClick={toggleVerifyPassword}>Show</button>
                             </div>
                             <h4>{validPasswords}</h4>
                         </div>
