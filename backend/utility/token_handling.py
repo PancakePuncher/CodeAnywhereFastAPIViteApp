@@ -1,7 +1,7 @@
 import os
 import json
 import pytz
-from datetime import datetime, date
+from datetime import datetime
 from dateutil import parser
 from base64 import (b64decode, b64encode)
 from Cryptodome.Cipher import ChaCha20_Poly1305

@@ -1,7 +1,7 @@
 import platform
-import uvicorn
 import os
 import sys
+import uvicorn
 from routes import (users, home)
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
