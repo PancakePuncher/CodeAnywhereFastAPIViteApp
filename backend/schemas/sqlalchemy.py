@@ -20,4 +20,15 @@ class DatabaseUserCredentials(Base):
     user_created_on_utc = Column(DateTime, default=datetime.now().astimezone(pytz.utc))
     user_last_login_utc = Column(DateTime, default=datetime.now().astimezone(pytz.utc))
 
+class DatabaseOSRSItems(Base):
 
+    __tablename__ = 'api_osrs_items'
+
+    icon = Column(String(255), nullable=False)
+    icon_large = Column(String(255), nullable=False)
+    id = Column(Integer, primary_key=True, unique=True, nullable=False)
+    type = Column(String(255), nullable=False)
+    typeIcon = Column(String(255), nullable=False)
+    name = Column(String(255), nullable=False)
+    description = Column(String(255), nullable=False)
+    members = Column(String(255), unique=False, nullable=False)

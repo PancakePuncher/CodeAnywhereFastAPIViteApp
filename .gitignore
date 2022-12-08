@@ -1,6 +1,9 @@
 # vscode
 .vscode
 
+# customer database migrator
+data_migrator/
+
 # alembic
 alembic.ini
 backend/alembic/
