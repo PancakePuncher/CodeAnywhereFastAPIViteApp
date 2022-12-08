@@ -1,4 +1,4 @@
-# CodeAnywhereFastAPIViteApp
+# FastAPI, Vite, and PostgreSQL Stack
 
 This application is my personal project using Python (FastAPI) and Javascript (React).
 
