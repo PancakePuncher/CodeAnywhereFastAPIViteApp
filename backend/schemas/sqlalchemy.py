@@ -2,9 +2,11 @@ import uuid
 import pytz
 from sqlalchemy import (Column, Integer, String, DateTime)
 from sqlalchemy.dialects.postgresql import UUID
-from utility.db_conn_builder import Base
+from sqlalchemy.ext.declarative import declarative_base
 from datetime import datetime
 
+Base = declarative_base()
+metadata = Base.metadata
 
 class DatabaseUserCredentials(Base):
 

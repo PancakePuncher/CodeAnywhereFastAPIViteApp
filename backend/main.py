@@ -5,13 +5,8 @@ import uvicorn
 from routes import (users, home)
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from dotenv import load_dotenv
-
-load_dotenv()
 
 app = FastAPI()
-
-SQLALCHEMY_DATABASE_URL = os.environ.get('DB_URL')
 
 origins = [
     "http://localhost:5173",

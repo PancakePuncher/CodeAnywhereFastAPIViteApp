@@ -16,3 +16,7 @@ Requirements:
       * AES_PASS_SECRET is the secret token used to encrypt passwords.
       * TOKEN_SECRET is the secret token used to encrypt persistent tokens for logged in authentication.
       * DB_URL is the URL used to connect to the database. (Postgresql)
+
+Alembic:
+  * I recommend using Alembic for database management in this project. The Schema Design currently supports Auto Generation.
+  * Please see Alembic documentation if you wish to set it up.
